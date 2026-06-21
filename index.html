@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Veetarag Vardhaman Patil — Network Engineer, Infrastructure Architect & Automation Specialist." />
+  <title>Veetarag Patil — Network Engineer</title>
+  <!-- Social / SEO -->
+  <meta property="og:title" content="Veetarag Patil — Network Engineer" />
+  <meta property="og:description" content="Network Engineer, Infrastructure Architect & Automation Specialist. Routing, security, cloud & automation." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%2300bceb' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='16' cy='6' r='3'/%3E%3Ccircle cx='6' cy='24' r='3'/%3E%3Ccircle cx='26' cy='24' r='3'/%3E%3Cpath d='M16 9v6M16 15l-9 8M16 15l9 8'/%3E%3C/g%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Boot sequence overlay -->
+  <div class="boot" id="boot" aria-hidden="true">
+    <pre class="boot__log mono" id="bootLog"></pre>
+  </div>
+
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <svg viewBox="0 0 24 24" class="cursor__rj45"><path d="M7 3h10a2 2 0 0 1 2 2v9l-2 2v3a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-3l-2-2V5a2 2 0 0 1 2-2zM9 6v2M12 6v2M15 6v2"/></svg>
+  </div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+  <!-- Interactive network mesh -->
+  <canvas id="mesh" class="mesh" aria-hidden="true"></canvas>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- Navbar -->
+  <header class="nav" id="nav">
+    <a href="#hero" class="brand" data-cursor="link">
+      <svg class="brand__icon" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="6" r="3"/><circle cx="6" cy="24" r="3"/><circle cx="26" cy="24" r="3"/>
+        <path d="M16 9v6M16 15l-9 8M16 15l9 8"/>
+      </svg>
+      <span>veetarag<span class="brand__dot">.</span>net</span>
+    </a>
+    <nav class="nav__links" id="navLinks">
+      <a href="#about" data-cursor="link">About</a>
+      <a href="#skills" data-cursor="link">Skills</a>
+      <a href="#projects" data-cursor="link">Projects</a>
+      <a href="#toolkit" data-cursor="link">Toolkit</a>
+      <a href="#contact" data-cursor="link">Contact</a>
+      <button class="theme-toggle" id="themeToggle" data-cursor="link" aria-label="Toggle theme">
+        <span class="theme-toggle__icon">◐</span>
+      </button>
+    </nav>
+    <button class="nav__toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero__left">
+      <div class="avail" data-cursor="link">
+        <span class="avail__pulse"></span> Open to opportunities
+      </div>
+      <div class="status-line">
+        <span class="status-dot"></span>
+        <span class="mono" id="statusTicker">SYSTEM ONLINE · BANGALORE, IN</span>
+      </div>
+      <h1 class="hero__title">Veetarag Vardhaman <span class="grad">Patil</span></h1>
+      <p class="hero__role mono">
+        &gt; <span id="roleText"></span><span class="type-cursor">_</span>
+      </p>
+      <p class="hero__sub">
+        I design, deploy, and automate resilient enterprise networks — from TCP/IP
+        architecture and routing protocols to secure, scalable infrastructure.
+      </p>
+      <div class="hero__actions">
+        <a href="#projects" class="btn btn--primary" data-cursor="link">
+          <span>Explore Topologies</span>
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#contact" class="btn btn--ghost" data-cursor="link">
+          <span class="ping-dot"></span> Initiate Ping
+        </a>
+        <a href="assets/Veetarag-Patil-Resume.pdf" download class="btn btn--ghost" data-cursor="link">
+          <svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+          <span>Resume</span>
+        </a>
+      </div>
+      <div class="hero__chips">
+        <span class="chip mono">B.Tech CSE · 2026</span>
+        <span class="chip mono">CCNA <em>in&nbsp;progress</em></span>
+        <span class="chip mono">Network+ <em>in&nbsp;progress</em></span>
+      </div>
+    </div>
+
+    <div class="hero__right">
+      <div class="headshot" id="headshot">
+        <span class="orbit-tag orbit-tag--1 mono">OSPF</span>
+        <span class="orbit-tag orbit-tag--2 mono">BGP</span>
+        <span class="orbit-tag orbit-tag--3 mono">Python</span>
+        <span class="orbit-tag orbit-tag--4 mono">VLAN</span>
+        <div class="headshot__frame">
+          <img src="assets/headshot.png" alt="Veetarag Vardhaman Patil"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="headshot__placeholder">
+            <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM3 22a9 9 0 0 1 18 0"/></svg>
+            <span class="mono">add assets/headshot.png</span>
+          </div>
+          <div class="headshot__scan"></div>
+        </div>
+        <div class="headshot__tag mono">
+          <span class="status-dot"></span> uptime 99.99%
+        </div>
+        <div class="headshot__ip mono">10.0.0.1/24</div>
+      </div>
+    </div>
+
+    <a href="#about" class="scroll-hint mono" data-cursor="link">scroll ↓</a>
+  </section>
+
+  <!-- About -->
+  <section class="section" id="about">
+    <div class="section__head">
+      <span class="section__num mono">01 //</span>
+      <h2>The Core</h2>
+    </div>
+    <div class="about">
+      <div class="about__intro">
+        <p>
+          I'm a Computer Science engineer building robust, scalable network
+          architectures out of <strong>Bangalore, India</strong>. Currently completing
+          my B.Tech at <strong>Sanjay Ghodawat University</strong>, I split my time
+          between routing labs, automation scripts, and hardening infrastructure
+          against real-world threats.
+        </p>
+        <p>
+          My philosophy: networks should be <strong>predictable, observable, and
+          self-documenting</strong>. I treat infrastructure as code and design for
+          failure before it happens.
+        </p>
+        <div class="stats" id="stats">
+          <div class="stat"><strong data-count="200" data-suffix="+">0</strong><span>Hosts scanned</span></div>
+          <div class="stat"><strong data-count="50" data-suffix="+">0</strong><span>Services audited</span></div>
+          <div class="stat"><strong data-count="40" data-suffix="%">0</strong><span>Attack surface cut</span></div>
+          <div class="stat"><strong data-count="10" data-suffix="+">0</strong><span>Hands-on labs</span></div>
+        </div>
+      </div>
+
+      <!-- Interactive server rack -->
+      <div class="rack" id="rack">
+        <div class="rack__label mono">RACK-01 · click a unit to expand</div>
+        <div class="rack-unit" data-cursor="link">
+          <div class="rack-unit__head">
+            <span class="rack-unit__led"></span>
+            <span class="rack-unit__title mono">U1 · EDUCATION</span>
+            <span class="rack-unit__chevron">+</span>
+          </div>
+          <div class="rack-unit__body">
+            <strong>B.Tech, Computer Science &amp; Engineering</strong>
+            <p class="muted">Sanjay Ghodawat University, Kolhapur · Sep 2022 – Jun 2026 · GPA 7.65/10</p>
+            <p class="small">Coursework: Computer Networks, Network Security, Network Administration, Operating Systems, Data Structures.</p>
+          </div>
+        </div>
+        <div class="rack-unit" data-cursor="link">
+          <div class="rack-unit__head">
+            <span class="rack-unit__led amber"></span>
+            <span class="rack-unit__title mono">U2 · EXPERIENCE</span>
+            <span class="rack-unit__chevron">+</span>
+          </div>
+          <div class="rack-unit__body">
+            <strong>Network Security Intern — Theta Dynamics Pvt. Ltd.</strong>
+            <p class="muted">Belagavi, Karnataka · Jan 2026 – Jun 2026</p>
+            <ul class="bullets">
+              <li>Reconnaissance with Nmap across <strong>200+ hosts</strong>, mapping the full attack surface.</li>
+              <li>Audited <strong>50+ services</strong> with Nessus; prioritized findings by CVSS.</li>
+              <li>Delivered a VAPT report aligned to <strong>NIST/CIS</strong>; reduced attack surface ~<strong>40%</strong>.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="rack-unit" data-cursor="link">
+          <div class="rack-unit__head">
+            <span class="rack-unit__led"></span>
+            <span class="rack-unit__title mono">U3 · CERTIFICATIONS</span>
+            <span class="rack-unit__chevron">+</span>
+          </div>
+          <div class="rack-unit__body">
+            <ul class="bullets">
+              <li>Cisco CCNA <em class="muted">(in progress)</em></li>
+              <li>CompTIA Network+ <em class="muted">(in progress)</em></li>
+              <li>Cyber Security 101 — TryHackMe</li>
+              <li>Ethical Hacking &amp; Web Pen Testing — Udemy</li>
+            </ul>
+          </div>
+        </div>
+        <div class="rack-unit" data-cursor="link">
+          <div class="rack-unit__head">
+            <span class="rack-unit__led"></span>
+            <span class="rack-unit__title mono">U4 · ACHIEVEMENTS</span>
+            <span class="rack-unit__chevron">+</span>
+          </div>
+          <div class="rack-unit__body">
+            <ul class="bullets">
+              <li>10+ hands-on labs on TryHackMe &amp; VulnHub — <strong>Top 10%</strong> ranking.</li>
+              <li>Maintain a personal home lab replicating enterprise topology: routers, switches, firewalls, IDS, multi-VLAN.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="section" id="skills">
+    <div class="section__head">
+      <span class="section__num mono">02 //</span>
+      <h2>Protocol &amp; Skill Matrix</h2>
+    </div>
+    <p class="section__lead">Hover a node to route a packet and reveal the stack.</p>
+    <div class="matrix" id="matrix">
+      <article class="node" data-cursor="link">
+        <div class="node__core">
+          <span class="node__icon">⇄</span>
+          <h3>Routing &amp; Switching</h3>
+        </div>
+        <div class="node__packet"></div>
+        <div class="node__tools">
+          <span>OSPF</span><span>BGP</span><span>EIGRP</span><span>STP</span>
+          <span>VLANs</span><span>Trunking</span><span>EtherChannel</span>
+        </div>
+      </article>
+      <article class="node" data-cursor="link">
+        <div class="node__core">
+          <span class="node__icon">🛡</span>
+          <h3>Network Security</h3>
+        </div>
+        <div class="node__packet"></div>
+        <div class="node__tools">
+          <span>Firewalls</span><span>VPN / IPSec</span><span>ACLs</span>
+          <span>IDS/IPS</span><span>VAPT</span><span>CVSS</span>
+        </div>
+      </article>
+      <article class="node" data-cursor="link">
+        <div class="node__core">
+          <span class="node__icon">☁</span>
+          <h3>Cloud Networking</h3>
+        </div>
+        <div class="node__packet"></div>
+        <div class="node__tools">
+          <span>VPCs</span><span>SD-WAN</span><span>Subnetting</span>
+          <span>NAT</span><span>MPLS</span><span>DNS / DHCP</span>
+        </div>
+      </article>
+      <article class="node" data-cursor="link">
+        <div class="node__core">
+          <span class="node__icon">⚙</span>
+          <h3>Network Automation</h3>
+        </div>
+        <div class="node__packet"></div>
+        <div class="node__tools">
+          <span>Python</span><span>Netmiko</span><span>Ansible</span>
+          <span>Bash</span><span>Git</span><span>SNMP</span>
+        </div>
+      </article>
+      <article class="node" data-cursor="link">
+        <div class="node__core">
+          <span class="node__icon">🔬</span>
+          <h3>Monitoring &amp; Analysis</h3>
+        </div>
+        <div class="node__packet"></div>
+        <div class="node__tools">
+          <span>Wireshark</span><span>Nmap</span><span>Nessus</span>
+          <span>Snort</span><span>Metasploit</span><span>Packet Tracer</span>
+        </div>
+      </article>
+      <article class="node" data-cursor="link">
+        <div class="node__core">
+          <span class="node__icon">🐧</span>
+          <h3>Platforms &amp; OS</h3>
+        </div>
+        <div class="node__packet"></div>
+        <div class="node__tools">
+          <span>Kali Linux</span><span>Ubuntu</span><span>Windows Server</span>
+          <span>VirtualBox</span><span>GNS3</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="section" id="projects">
+    <div class="section__head">
+      <span class="section__num mono">03 //</span>
+      <h2>Lab &amp; Infrastructure</h2>
+    </div>
+    <div class="dashboard">
+      <article class="proj" data-cursor="link">
+        <div class="proj__topology" data-kind="campus" aria-hidden="true">
+          <span class="topo-node n1"></span><span class="topo-node n2"></span>
+          <span class="topo-node n3"></span><span class="topo-node n4"></span>
+          <span class="topo-node n5"></span>
+        </div>
+        <div class="proj__body">
+          <span class="proj__tag mono">LAB · 4 VLANS</span>
+          <h3>Enterprise Campus Architecture</h3>
+          <p class="muted">
+            Virtualized multi-segment network with inter-VLAN routing, OSPF-style
+            static routing, STP, trunking &amp; EtherChannel. 500+ packets captured
+            and analyzed for verification.
+          </p>
+          <div class="proj__expand">
+            <ul class="tags">
+              <li>Cisco Packet Tracer</li><li>VirtualBox</li><li>Wireshark</li><li>Kali Linux</li>
+            </ul>
+            <a class="proj__link mono" href="#contact" data-cursor="link">View Documentation →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj" data-cursor="link">
+        <div class="proj__topology proj__code" data-kind="script" aria-hidden="true">
+<pre class="mono"><span class="c-key">def</span> push_config(hosts):
+  <span class="c-key">for</span> h <span class="c-key">in</span> hosts:
+    conn = ConnectHandler(**h)
+    conn.send_config_set(vlan_cfg)
+    log(<span class="c-str">"OK"</span>, h[<span class="c-str">"ip"</span>])</pre>
+        </div>
+        <div class="proj__body">
+          <span class="proj__tag mono">AUTOMATION</span>
+          <h3>Automated Provisioning Script</h3>
+          <p class="muted">
+            Python tooling to deploy and validate configurations across multiple
+            routers/switches, plus automated parsing of threat logs into structured
+            SOC-style incident reports.
+          </p>
+          <div class="proj__expand">
+            <ul class="tags">
+              <li>Python</li><li>Netmiko</li><li>Ansible</li><li>Regex</li>
+            </ul>
+            <a class="proj__link mono" href="#contact" data-cursor="link">View Documentation →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj" data-cursor="link">
+        <div class="proj__topology proj__rack" data-kind="homelab" aria-hidden="true">
+          <span class="hl-bar"></span><span class="hl-bar"></span>
+          <span class="hl-bar"></span><span class="hl-bar"></span>
+        </div>
+        <div class="proj__body">
+          <span class="proj__tag mono">HOMELAB · IDS</span>
+          <h3>Homelab Datacenter &amp; IDS</h3>
+          <p class="muted">
+            Virtualized server environment running Snort IDS. Simulated 5+ real-world
+            attacks (port scans, ARP spoofing, brute-force SSH) and tuned detection
+            rules against 10+ .pcap captures.
+          </p>
+          <div class="proj__expand">
+            <ul class="tags">
+              <li>Snort</li><li>Wireshark</li><li>Kali Linux</li><li>Python</li>
+            </ul>
+            <a class="proj__link mono" href="#contact" data-cursor="link">View Documentation →</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Network Toolkit -->
+  <section class="section" id="toolkit">
+    <div class="section__head">
+      <span class="section__num mono">04 //</span>
+      <h2>Network Toolkit</h2>
+    </div>
+    <p class="section__lead">Live tools — not screenshots. Try them.</p>
+    <div class="toolkit">
+      <!-- Subnet calculator -->
+      <div class="tool tool--subnet">
+        <div class="tool__head mono"><span class="status-dot"></span> SUBNET CALCULATOR</div>
+        <div class="tool__body">
+          <label class="field">
+            <span class="mono">CIDR address:</span>
+            <input type="text" id="cidrInput" class="mono" value="192.168.1.0/24"
+                   placeholder="10.0.0.0/24" data-cursor="text" autocomplete="off" />
+          </label>
+          <div class="subnet-out" id="subnetOut"></div>
+        </div>
+      </div>
+
+      <!-- Interactive terminal -->
+      <div class="tool tool--term">
+        <div class="ssh__bar">
+          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+          <span class="ssh__title mono">guest@veetarag-net: ~</span>
+        </div>
+        <div class="termbox" id="termbox" data-cursor="text">
+          <div class="termbox__out" id="termOut"></div>
+          <div class="termbox__input">
+            <span class="c-prompt mono">guest@net:~$</span>
+            <input type="text" id="termInput" class="mono" autocomplete="off"
+                   spellcheck="false" aria-label="terminal input" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section section--contact" id="contact">
+    <div class="section__head">
+      <span class="section__num mono">05 //</span>
+      <h2>Establish Session</h2>
+    </div>
+    <div class="ssh">
+      <div class="ssh__bar">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="ssh__title mono">ssh veetarag@10.0.0.1</span>
+      </div>
+      <div class="ssh__body">
+        <p class="ssh__line mono"><span class="c-prompt">veetarag@net</span>:~$ connect --secure</p>
+        <p class="ssh__line mono c-out">Session established. Send a message below ↓</p>
+        <form class="ssh-form" id="contactForm" novalidate>
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+          <input type="hidden" name="subject" value="New message from portfolio" />
+          <input type="hidden" name="from_name" value="Veetarag Portfolio" />
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+          <label class="field">
+            <span class="mono">name:</span>
+            <input type="text" name="name" required placeholder="your name" data-cursor="text" />
+          </label>
+          <label class="field">
+            <span class="mono">email:</span>
+            <input type="email" name="email" required placeholder="you@domain.com" data-cursor="text" />
+          </label>
+          <label class="field">
+            <span class="mono">message:</span>
+            <textarea name="message" rows="4" required placeholder="payload..." data-cursor="text"></textarea>
+          </label>
+          <button type="submit" class="btn btn--primary" data-cursor="link">
+            <span>Transmit</span>
+            <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </button>
+          <p class="ssh__status mono" id="formStatus" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+
+    <div class="links">
+      <a class="link-icon" href="mailto:veetaragpatil333@gmail.com" data-cursor="link" aria-label="Email">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 6l8 6 8-6"/></svg>
+        <span class="mono">Email</span>
+      </a>
+      <a class="link-icon" href="https://github.com/veetaragpatil" target="_blank" rel="noopener" data-cursor="link" aria-label="GitHub">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5a4 4 0 0 1 1-2.7c-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7a4 4 0 0 1 1 2.7c0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.8v2.6c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg>
+        <span class="mono">GitHub</span>
+      </a>
+      <a class="link-icon" href="https://linkedin.com/in/veetarag-patil" target="_blank" rel="noopener" data-cursor="link" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M4 4h4v16H4zM6 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM10 9h3.8v2.1h.1c.5-1 1.8-2.1 3.7-2.1 4 0 4.7 2.6 4.7 6V20h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6V20h-4z"/></svg>
+        <span class="mono">LinkedIn</span>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer mono">
+    <p>© <span id="year"></span> Veetarag Vardhaman Patil · packets routed with care</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
