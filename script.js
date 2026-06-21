@@ -255,7 +255,7 @@ form.addEventListener('submit', async (e) => {
   const message = (data.get('message') || '').toString().trim();
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   if (!name || !emailOk || !message) {
-    status.textContent = '✗ connection refused — check all fields';
+    status.textContent = '✗ Please fill in your name, a valid email, and a message.';
     status.className = 'ssh__status mono err';
     return;
   }
@@ -274,7 +274,7 @@ form.addEventListener('submit', async (e) => {
     return;
   }
 
-  status.textContent = '› transmitting packet...';
+  status.textContent = '› sending your message...';
   status.className = 'ssh__status mono';
   try {
     const res = await fetch('https://api.web3forms.com/submit', {
@@ -284,14 +284,14 @@ form.addEventListener('submit', async (e) => {
     });
     const json = await res.json();
     if (json.success) {
-      status.textContent = '✓ 200 OK — message delivered. I will reply soon.';
+      status.textContent = '✓ Message sent — thanks! I\'ll get back to you soon.';
       status.className = 'ssh__status mono ok';
       form.reset();
     } else {
       throw new Error(json.message || 'failed');
     }
   } catch (err) {
-    status.textContent = '✗ 503 — transmission failed. Email me directly instead.';
+    status.textContent = '✗ Couldn\'t send your message. Please email me at veetaragpatil333@gmail.com';
     status.className = 'ssh__status mono err';
   }
 });
