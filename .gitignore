@@ -2,3 +2,8 @@
 Thumbs.db
 *.log
 node_modules/
+
+# Stray files from earlier upload (real assets live in assets/)
+/headshot.png
+/veetaragp.pdf
+/portfolio
